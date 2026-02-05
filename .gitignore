@@ -1,0 +1,15 @@
+.DS_Store
+.codex/
+
+# Local run artifacts
+logs/
+*.log
+*.pid
+*.stdout
+*.tmp
+
+# Build outputs (keep sources only)
+**/build/
+
+# Reference material (keep local)
+bootstrapping-sok.pdf

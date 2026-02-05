@@ -1,0 +1,9 @@
+[submodule "checkra1n_research/pongoOS"]
+	path = checkra1n_research/pongoOS
+	url = https://github.com/checkra1n/pongoOS.git
+[submodule "checkra1n_research/ipwndfu"]
+	path = checkra1n_research/ipwndfu
+	url = https://github.com/axi0mX/ipwndfu.git
+[submodule "xnu"]
+	path = xnu
+	url = https://github.com/apple-oss-distributions/xnu
