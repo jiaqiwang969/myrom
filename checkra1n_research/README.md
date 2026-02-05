@@ -10,5 +10,5 @@
 初始化（只需要做一次）：
 
 ```bash
-git submodule update --init --recursive
+git submodule update --init --recursive checkra1n_research/pongoOS
 ```
