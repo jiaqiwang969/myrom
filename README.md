@@ -106,7 +106,15 @@ bootx
 
 ## Submodules
 
-克隆后需要初始化 submodules：
+克隆后需要初始化 submodules。
+
+最小集（只跑 v0.1 实验所需）：
+
+```bash
+git submodule update --init --recursive checkra1n_research/pongoOS
+```
+
+全部（包含可选的 `ipwndfu` / `xnu`）：
 
 ```bash
 git submodule update --init --recursive
