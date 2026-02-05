@@ -63,6 +63,28 @@ run_ssh() {
     -p "$port" "${SSH_USER}@localhost" "$@"
 }
 
+set +e
+ssh_probe_out="$(run_ssh "echo __myrom_ssh_ok__" 2>&1)"
+ssh_probe_rc=$?
+set -e
+
+if [[ $ssh_probe_rc -ne 0 ]]; then
+  echo "[verify] ERROR: SSH to device failed (port 22 not reachable)." >&2
+  echo "[verify] ssh output:" >&2
+  echo "$ssh_probe_out" >&2
+  echo "[verify] iproxy output (tail):" >&2
+  tail -n 20 "$log" >&2 || true
+  echo "" >&2
+  echo "[verify] Common causes:" >&2
+  echo "  - Not in jailbroken state (checkra1n is semi-tethered; rerun jailbreak after reboot)" >&2
+  echo "  - OpenSSH not installed or sshd not running yet (unlock the phone, wait 30s)" >&2
+  echo "  - USB restricted / not trusted (unlock + tap Trust)" >&2
+  echo "" >&2
+  echo "[verify] Next suggested step:" >&2
+  echo "  ./verify_myrom_bootargs.sh" >&2
+  exit 3
+fi
+
 if [[ "$AUTO_INSTALL_MYROMCTL" == "1" ]]; then
   set +e
   run_ssh "test -x /usr/local/bin/myromctl" >/dev/null 2>&1
