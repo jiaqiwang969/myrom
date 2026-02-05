@@ -4,6 +4,23 @@
 
 Apple SecureROM（不可改） → checkm8（获得早期执行） → pongoOS（可控早期阶段 = MyROM） → kernelcache（XNU） → iOS
 
+## 当前实现（v0.1 已落地）
+
+本仓库已经实现了一个最小可复现闭环（对应第 4 节的方案 B：写入 boot-args）：
+
+- pongoOS 模块：`modules/myrom_manifest/`
+  - 在 `preboot_hook` 阶段对 in-memory `kernelcache` 做 SHA-256
+  - 将 `myrom_*` 字段追加到 `boot-args`
+- 验证脚本：`./verify_myrom_bootargs.sh`
+  - 通过 `iproxy + ssh` 读取 `sysctl -n kern.bootargs` 并提取 `myrom_*`
+
+最短复现路径（顺序）见仓库根目录 `README.md`：
+
+1) `./jailbreak_normal.sh`（进入越狱态）
+2) Cydia 安装 `OpenSSH`
+3) `./run_myrom_v0_1.sh`（pongoOS 加载模块 → `sep auto` → `bootx`）
+4) `./verify_myrom_bootargs.sh`（看到 `myrom_ksha256 / myrom_slide` 等字段）
+
 ## 0. 定义
 
 - MyROM：你“最早能稳定控制”的启动阶段，以及它承诺做的事情（记录/验证/传递状态）。
@@ -100,4 +117,3 @@ KPF 是对二进制 kernelcache 做 patch，但你需要源码回答：
 
 - 路线 1：`measure-only`（先把 manifest 链路跑通）
 - 路线 2：`enforce`（再加策略：不符合就不 boot iOS）
-
