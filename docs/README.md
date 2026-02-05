@@ -9,6 +9,10 @@
 
 - `docs/myrom-v0.1-research.md`：v0.1 目标、信任边界、Manifest 设计与“怎么传下去”的方案对比
 
+## MyROM v0.2（DeviceTree）
+
+- `docs/myrom-v0.2-devicetree-manifest.md`：把 manifest 从 boot-args 升级为 DeviceTree（并提供 iOS 侧读取/落盘工具）
+
 ## 学习路线
 
 ### Phase 1（checkm8 / 启动链基础）

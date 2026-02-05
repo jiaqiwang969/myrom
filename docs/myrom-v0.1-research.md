@@ -21,6 +21,10 @@ Apple SecureROM（不可改） → checkm8（获得早期执行） → pongoOS�
 3) `./run_myrom_v0_1.sh`（pongoOS 加载模块 → `sep auto` → `bootx`）
 4) `./verify_myrom_bootargs.sh`（看到 `myrom_ksha256 / myrom_slide` 等字段）
 
+同时，我们也已经把第 4 节方案 A（DeviceTree）落地为 v0.2：
+
+- 见：`docs/myrom-v0.2-devicetree-manifest.md`
+
 ## 0. 定义
 
 - MyROM：你“最早能稳定控制”的启动阶段，以及它承诺做的事情（记录/验证/传递状态）。
