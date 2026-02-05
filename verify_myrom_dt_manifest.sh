@@ -73,7 +73,7 @@ if [[ "$AUTO_INSTALL_MYROMCTL" == "1" ]]; then
     if command -v xcrun >/dev/null 2>&1; then
       echo "[verify] myromctl not found on device; building + deploying it now..."
       DEVICE_PORT="$port" DEVICE_USER="$SSH_USER" DEVICE_PASS="$SSH_PASS" \
-        ios/myromctl/build_and_deploy.sh >/dev/null
+        ios/myromctl/build_and_deploy.sh
     else
       echo "[verify] WARN: xcrun not found; can't auto-install myromctl. Install it manually:" >&2
       echo "  DEVICE_PORT=$port ios/myromctl/build_and_deploy.sh" >&2
